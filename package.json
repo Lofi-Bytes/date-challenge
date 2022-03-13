@@ -1,0 +1,40 @@
+{
+  "name": "date-time-challenge",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "given a date range, sorts it into monthly bins; count how many dates, from a date list, that fall into each bin, plot the bins on a histogram",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve",
+    "build": "node_modules/.bin/webpack --config webpack.config.js --mode=production",
+    "watch": "node_modules/.bin/webpack --config webpack.config.js --mode=development -w",
+    "prebuild:dev": "rimraf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lofi-Bytes/date-time-challenge.git"
+  },
+  "author": "Jillian S. Estrella",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lofi-Bytes/date-time-challenge/issues"
+  },
+  "homepage": "https://github.com/Lofi-Bytes/date-time-challenge#readme",
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
+    "html-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "live-server": "^1.2.1",
+    "rimraf": "^3.0.2",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-server": "^0.1.2"
+  },
+  "dependencies": {
+    "chart.js": "^3.7.1"
+  }
+}

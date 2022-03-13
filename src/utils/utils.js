@@ -1,3 +1,6 @@
+import { Chart, registerables } from 'chart.js'
+Chart.register(...registerables)
+
 /**
  * Parse date string in yyyy-mm-dd format.
  *
@@ -5,7 +8,7 @@
  * For example, if you pass a string directly in:
  * Date('2021-07-01'), Date() will return 2021 06 30.
  */
-function parseDate(input) {
+export function parseDate(input) {
   var parts = input.match(/(\d+)/g);
   // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
   return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
@@ -16,7 +19,7 @@ function parseDate(input) {
 * Get the days between endDate and startDate.
 * Place those days in daysInRange.
 */
-function getTotalDays(endDate, startDate) {
+export function getTotalDays(endDate, startDate) {
   let dateDecrement = endDate
   let daysInRange = []
   daysInRange.push(endDate)
@@ -40,7 +43,7 @@ function getTotalDays(endDate, startDate) {
 /**
  * Build the month increments.
  */
-function getMonthList(daysInRange) {
+export function getMonthList(daysInRange) {
   let monthList = []
   for (let i = 0; i < daysInRange.length; i++) {
     /**
@@ -71,7 +74,7 @@ function getMonthList(daysInRange) {
 /**
  * Build the month increments.
  */
-function getMonthRanges(monthList, dates) {
+export function getMonthRanges(monthList, dates) {
   let monthRanges = []
   for (let i = 0; i < monthList.length; i++) {
     if(monthList[i] !== monthList[monthList.length] && monthList[i + 1] !== undefined) {
@@ -126,7 +129,7 @@ function getMonthRanges(monthList, dates) {
 /**
  * Plot a histogram of the results
  */
-function makeMonthListHistogram(monthList, monthRanges) {
+export function makeMonthListHistogram(monthList, monthRanges) {
   const labels = monthList.map((month) => {
     return month.toLocaleString(
       'default',
@@ -183,7 +186,7 @@ function makeMonthListHistogram(monthList, monthRanges) {
 }
 
 
-function dateTimeChallenge(endDate, startDate, dateList) {
+export default function dateTimeChallenge(endDate, startDate, dateList) {
   /**
   * Convert startDate and endDate, so we can get the date range
   */
@@ -203,26 +206,3 @@ function dateTimeChallenge(endDate, startDate, dateList) {
 
   makeMonthListHistogram(monthList, monthRanges)
 }
-
-
-const startDate = '2021-07-05'
-const endDate = '2021-11-05'
-
-const dateList = [
-  '2021-07-05',
-  '2021-07-08',
-  '2021-08-05',
-  '2021-08-14',
-  '2021-08-25',
-  '2021-09-05',
-  '2021-09-16',
-  '2021-09-25',
-  '2021-09-28',
-  '2021-10-02',
-  '2021-10-10',
-  '2021-11-11',
-  '2022-03-05',
-  '2022-03-09'
-]
-
-dateTimeChallenge(endDate, startDate, dateList)
