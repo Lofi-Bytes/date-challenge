@@ -137,6 +137,14 @@ export function makeMonthListHistogram(monthList, monthRanges) {
     )
   })
 
+  const backgroundColors = monthRanges.map((month, index) => {
+      return `hsla(${((360) * index)/(monthRanges.length)}, ${100}%, ${69}%,  0.4)`
+  })
+
+  const borderColors = monthRanges.map((month, index) => {
+    return `hsla(${((360) * index)/(monthRanges.length)}, ${100}%, ${69}%,  1)`
+  })
+
   const data = {
     labels: labels,
     datasets: [{
@@ -144,20 +152,9 @@ export function makeMonthListHistogram(monthList, monthRanges) {
       data: monthRanges.map((date) => {
         return date.y
       }),
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(201, 203, 207, 0.2)'
-      ],
-      borderColor: [
-        'rgb(255, 99, 132)',
-        'rgb(75, 192, 192)',
-        'rgb(54, 162, 235)',
-        'rgb(153, 102, 255)',
-        'rgb(201, 203, 207)'
-      ],
+      backgroundColor: backgroundColors
+      ,
+      borderColor: borderColors,
       borderWidth: 1
     }]
   }
